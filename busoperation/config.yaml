@@ -1,0 +1,40 @@
+# environment related configuration
+# you can choose 'cd_route_3' or 'homogeneous_one_route'
+env_name: 'homogeneous_one_route'
+
+# you can choose 'model_based' or 'RL'. True for model_based, False for RL
+agent_type: false
+
+model_based_agent_config:
+    # model based agent related configuration (Xuan)
+    # note 'f0' and 'f1' must be specified for simple control
+    fs: {'f0': -1, 'f1': 0}
+    # slack time for hold
+    slack: 30
+    # two types of base type: 'rtd' or 'arrival'.
+    base_type: 'rtd'
+    agent_name: Simple_Control
+
+RL_agent_config:
+    # RL agent related configuration (DDPG)
+    slack: 30  # to generate the virtual bus
+    max_hold_time: 60
+    state_size: 1
+    hidden_size: [64, ]
+    actor_lr: 0.005
+    critic_lr: 0.005
+    gamma: 0.98
+    polya: 0.99
+    memory_size: 12000
+    update_cycle: 5
+    batch_size: 64
+    init_noise_level: 0.25
+    decay_rate: 0.99
+    agent_name: Do_Nothing
+
+train_config:
+    # training related configuration
+    episode_num: 200
+    # the number of steps in each episode
+    step_num: 10800
+    seed: 1
